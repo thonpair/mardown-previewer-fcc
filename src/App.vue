@@ -1,17 +1,23 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <textarea id="editor" v-model="markdownText">  
+  </textarea>
+    <Preview :markdownText="markdownText" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Preview from './components/Preview'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Preview
+  },
+  data(){
+    return {
+      markdownText : "tot"
+    }
   }
 }
 </script>
