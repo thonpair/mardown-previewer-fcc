@@ -2,22 +2,27 @@
   <div id="app">
     <textarea id="editor" v-model="markdownText">  
   </textarea>
-    <Preview :markdownText="markdownText" />
+    <div id="preview">
+      <VueMarkdown :source="markdownText"></VueMarkdown>
+  </div>
+
   </div>
 </template>
 
 <script>
-import Preview from './components/Preview'
-
+import VueMarkdown from 'vue-markdown'
 export default {
   name: 'App',
   components: {
-    Preview
+    VueMarkdown
   },
   data(){
     return {
-      markdownText : "tot"
+      markdownText :  String,
     }
+  },
+  created(){
+    this.markdownText = "a\n# h1 Heading\n## h2 Heading\n[link text](https://emmanuel.hemer.it)\nInline `code`\n```\nSample text here...\n```\n+ list item 1\n+ list item 2\n> Blockquote\n![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg \"The Stormtroopocat\")\n**This is bold text**"
   }
 }
 </script>
@@ -27,8 +32,11 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+#editor{
+  width: 500px;
+  height:300px;
 }
 </style>
